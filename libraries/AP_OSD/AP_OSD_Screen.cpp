@@ -926,7 +926,7 @@ void AP_OSD_Screen::draw_altitude(uint8_t x, uint8_t y)
     WITH_SEMAPHORE(ahrs.get_semaphore());
     ahrs.get_relative_position_D_home(alt);
     alt = -alt;
-    backend->write(x, y, false, "%4d%c", (int)u_scale(ALTITUDE, alt), u_icon(ALTITUDE));
+    backend->write(x, y, false, "%4d%c", (int)u_scale(ALTITUDE, alt)/10, u_icon(ALTITUDE));
 }
 
 void AP_OSD_Screen::draw_bat_volt(uint8_t x, uint8_t y)
@@ -1147,7 +1147,7 @@ void AP_OSD_Screen::draw_distance(uint8_t x, uint8_t y, float distance)
     } else if (distance_scaled < 10.0f) {
         fmt = "% 3.1f%c";
     }
-    backend->write(x, y, false, fmt, (double)distance_scaled, unit_icon);
+    backend->write(x, y, false, fmt, (double)distance_scaled/10, unit_icon);
 }
 
 void AP_OSD_Screen::draw_home(uint8_t x, uint8_t y)
